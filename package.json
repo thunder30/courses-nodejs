@@ -1,0 +1,30 @@
+{
+  "name": "blog_nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --inspect index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thunder30/blog_nodejs.git"
+  },
+  "keywords": [
+    "blog",
+    "nodejs"
+  ],
+  "author": "thunder",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thunder30/blog_nodejs/issues"
+  },
+  "homepage": "https://github.com/thunder30/blog_nodejs#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
