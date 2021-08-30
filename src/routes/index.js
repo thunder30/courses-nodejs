@@ -7,7 +7,7 @@ function route(app) {
     app.use('/news', newsRouter);
 
     // Route Course
-    app.use('/course', courseRouter);
+    app.use('/courses', courseRouter);
 
     // Route Home, Search, Contact...
     app.use('/', siteRouter);

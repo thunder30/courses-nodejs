@@ -1,18 +1,12 @@
 const CourseModel = require('../models/Course');
-const { multiplyMongooseToObject } = require('../../util/mongoose');
-class CourseController {
-    index(req, res, next) {
-        // get all collection
-        // CourseModel.find({}, function (err, courses) {
-        //     if(!err) {
-        //         res.json(courses);
-        //         return;
-        //     }
-        //     res.status(400).json({
-        //         error: 'ERROR',
-        //     });
-        // });
+const {
+    multiplyMongooseToObject,
+    mongooseToObject,
+} = require('../../util/mongoose');
 
+class CourseController {
+    // [GET] /course
+    index(req, res, next) {
         // use promise
         CourseModel.find({})
             .then((courses) => {
@@ -21,6 +15,18 @@ class CourseController {
                 });
             })
             .catch(next);
+    }
+
+    // [GET] /course/:slug
+    show(req, res, next) {
+        CourseModel.findOne({ slug: req.params.slug })
+            .then((course) => {
+                res.render('courses/show', {
+                    course: mongooseToObject(course),
+                });
+            })
+            .catch(next);
+        //res.send('detail - ' + req.params.slug);
     }
 }
 
