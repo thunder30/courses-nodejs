@@ -5,18 +5,6 @@ const {
 } = require('../../util/mongoose');
 
 class CourseController {
-    // [GET] /course
-    index(req, res, next) {
-        // use promise
-        Course.find({})
-            .then((courses) => {
-                res.render('home', {
-                    courses: multiplyMongooseToObject(courses),
-                });
-            })
-            .catch(next);
-    }
-
     // [GET] /course/:slug
     show(req, res, next) {
         Course.findOne({ slug: req.params.slug })
@@ -26,7 +14,6 @@ class CourseController {
                 });
             })
             .catch(next);
-        //res.send('detail - ' + req.params.slug);
     }
 
     // [GET] /course/create
@@ -43,6 +30,37 @@ class CourseController {
             .save()
             .then(() => res.redirect(`/courses`))
             .catch((err) => {});
+    }
+
+    // [GET] /course/:id/edit
+    edit(req, res, next) {
+        Course.findById(req.params.id)
+            .then((course) =>
+                res.render('courses/edit', {
+                    course: mongooseToObject(course),
+                }),
+            )
+            .catch(next);
+    }
+
+    // [PUT] /course/:id
+    update(req, res, next) {
+        const id = req.params.id;
+        Course.updateOne({ _id: id }, req.body)
+            .then(() => res.redirect('/me/stored/courses'))
+            .catch(next);
+    }
+
+    // [GET] /course
+    index(req, res, next) {
+        // use promise
+        Course.find({})
+            .then((courses) => {
+                res.render('home', {
+                    courses: multiplyMongooseToObject(courses),
+                });
+            })
+            .catch(next);
     }
 }
 
