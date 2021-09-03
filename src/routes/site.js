@@ -7,3 +7,5 @@ router.get('/search', siteController.search);
 router.get('/', siteController.index);
 
 module.exports = router;
+
+// router này điều hướng tới home, search, contact

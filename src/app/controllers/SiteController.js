@@ -1,12 +1,24 @@
+const Course = require('../models/Course');
+const {
+    multiplyMongooseToObject,
+    mongooseToObject,
+} = require('../../util/mongoose');
 class SiteController {
-    // [GET] /
-    index(req, res) {
-        res.render('home');
-    }
-
     // [GET] /search
     search(req, res) {
         res.render('search');
+    }
+
+    // [GET] /
+    index(req, res, next) {
+        // use promise
+        Course.find({})
+            .then((courses) => {
+                res.render('home', {
+                    courses: multiplyMongooseToObject(courses),
+                });
+            })
+            .catch(next);
     }
 }
 
