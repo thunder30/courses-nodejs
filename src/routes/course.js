@@ -6,6 +6,7 @@ const courseController = require('../app/controllers/CourseController');
 router.get('/create', courseController.create); // get form thêm mới
 router.post('/store', courseController.store); // thêm mới khoá học [POST]
 router.get('/:id/edit', courseController.edit); // get form chỉnh sửa
+router.post('/handle-form-action', courseController.handleFormActions);
 router.put('/:id', courseController.update); // cập nhật khoá học [PUT]
 router.patch('/:id/restore', courseController.restore); // cập nhật khoá học [PATCH]
 router.delete('/:id', courseController.delete); // soft delete khoá học [DELETE]
