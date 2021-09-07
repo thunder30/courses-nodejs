@@ -24,6 +24,17 @@ const Course = new Schema(
     },
 );
 
+// Custome query helpers
+Course.query.sortable = function (req) {
+    if (req.query.hasOwnProperty('_sort')) {
+        const isValidType = ['asc', 'desc'].includes(req.query.type);
+        return this.sort({
+            [req.query.column]: isValidType ? req.query.type : 'desc',
+        });
+    }
+    return this;
+};
+
 // Add plugin
 mongoose.plugin(slug);
 Course.plugin(AutoIncrement);

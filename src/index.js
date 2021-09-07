@@ -39,31 +39,7 @@ app.engine(
     'hbs',
     handlebars({
         extname: '.hbs',
-        helpers: {
-            sum: (a, b) => a + b,
-            sortable: (fieldName, sort) => {
-                const sortType =
-                    fieldName === sort.column ? sort.type : 'default';
-                const icons = {
-                    default: 'oi oi-elevator',
-                    asc: 'oi oi-sort-ascending',
-                    desc: 'oi oi-sort-descending',
-                };
-                const types = {
-                    default: 'desc',
-                    asc: 'desc',
-                    desc: 'asc',
-                };
-
-                const icon = icons[sortType];
-                const type = types[sortType];
-
-                // cho lần sort tiếp theo
-                return `<a href="?_sort&column=${fieldName}&type=${type}">
-                    <span class="${icon}"></span>
-                </a>`;
-            },
-        },
+        helpers: require('./helpers/handlebars'),
     }),
 );
 app.set('view engine', 'hbs');
