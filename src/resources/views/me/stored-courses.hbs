@@ -27,6 +27,7 @@
                 <th scope="col">
                     ID
                     {{{sortable '_id' _sort}}}
+                    {{!-- Thẻ link chứa icon --}}
                 </th>
                 <th scope="col">
                     Tên khoá học
@@ -111,7 +112,7 @@
         var courseItemCheckbox = $('input[name="courseIds[]"]');
         var checkAllSubmitBtn = $('.btn-check-all-submit');
 
-        
+
         // when dialog confirm show
         $('#delete-course-modal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
@@ -141,7 +142,7 @@
         // Re-render check all submit button
         function renderCheckAllSubmitBtn() {
             var checkedCount = $('input[name="courseIds[]"]:checked').length;
-            
+
             if (checkedCount > 0) {
                 checkAllSubmitBtn.attr('disabled', false);
             } else {
